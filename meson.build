@@ -16,4 +16,4 @@ craft_source_files = [ 'src/auth.c','src/client.c','src/cube.c','src/db.c','src/
 ext_source_files = [ 'deps/glew/src/glew.c','deps/lodepng/lodepng.c','deps/noise/noise.c','deps/sqlite/sqlite3.c','deps/tinycthread/tinycthread.c' ]
 
 # Executable
-executable('craft', craft_source_files, ext_source_files, include_directories : inc_dirs, dependencies: [ libmdep, libdldep, curldep, glfwdep, gludep, threaddep ] )
+executable('minantium', craft_source_files, ext_source_files, include_directories : inc_dirs, dependencies: [ libmdep, libdldep, curldep, glfwdep, gludep, threaddep ] )

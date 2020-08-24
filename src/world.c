@@ -17,25 +17,30 @@ void create_world(int p, int q, world_func func, void *arg) {
             int mh = g * 32 + 16;
             int h = f * mh;
             int w = 1;
+            int v = 7;
             int t = 12;
             if (h <= t) {
-                h = t;
+//                h = t;
                 w = 2;
+                v = 2;
             }
             // sand and grass terrain
             for (int y = 0; y < h; y++) {
-                func(x, y, z, w * flag, arg);
+                func(x, 0, z, 14 * flag, arg); // Bedrock
+                func(x, y, z, 6 * flag, arg); // Stone
+                func(x, y+2, z, v * flag, arg); // Dirt
+                func(x, y+3, z, w * flag, arg); // Grass!
             }
             if (w == 1) {
                 if (SHOW_PLANTS) {
                     // grass
                     if (simplex2(-x * 0.1, z * 0.1, 4, 0.8, 2) > 0.6) {
-                        func(x, h, z, 17 * flag, arg);
+                        func(x, h+3, z, 17 * flag, arg);
                     }
                     // flowers
                     if (simplex2(x * 0.05, -z * 0.05, 4, 0.8, 2) > 0.7) {
                         int w = 18 + simplex2(x * 0.1, z * 0.1, 4, 0.8, 2) * 7;
-                        func(x, h, z, w * flag, arg);
+                        func(x, h+3, z, w * flag, arg);
                     }
                 }
                 // trees
@@ -52,13 +57,13 @@ void create_world(int p, int q, world_func func, void *arg) {
                                 int d = (ox * ox) + (oz * oz) +
                                     (y - (h + 4)) * (y - (h + 4));
                                 if (d < 11) {
-                                    func(x + ox, y, z + oz, 15, arg);
+                                    func(x + ox, y+3, z + oz, 15, arg);
                                 }
                             }
                         }
                     }
                     for (int y = h; y < h + 7; y++) {
-                        func(x, y, z, 5, arg);
+                        func(x, y+3, z, 5, arg);
                     }
                 }
             }

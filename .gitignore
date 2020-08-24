@@ -4,13 +4,14 @@ CMakeCache.txt
 CMakeFiles
 cmake_install.cmake
 config.py
-craft
+minantium
 world
 env
 log.txt
+build
 *.o
 *.db
 *.exe
 *.dll
 *.pyc
-
+*.geany
