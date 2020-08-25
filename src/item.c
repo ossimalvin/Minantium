@@ -16,7 +16,7 @@ const int items[] = {
     COBBLE,
     LIGHT_STONE,
     DARK_STONE,
-    CHEST,
+    BEDROCK,
     LEAVES,
     TALL_GRASS,
     YELLOW_FLOWER,

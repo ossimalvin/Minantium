@@ -2368,8 +2368,8 @@ void create_window() {
         int mode_count;
         monitor = glfwGetPrimaryMonitor();
         const GLFWvidmode *modes = glfwGetVideoModes(monitor, &mode_count);
-        window_width = modes[mode_count - 1].width;
-        window_height = modes[mode_count - 1].height;
+        window_width = modes->width;
+        window_height = modes->height;
     }
     g->window = glfwCreateWindow(
         window_width, window_height, "Minantium", monitor, NULL);
@@ -2416,7 +2416,7 @@ void handle_movement(double dt) {
     if (!g->typing) {
         float m = dt * 1.0;
         g->ortho = glfwGetKey(g->window, CRAFT_KEY_ORTHO) ? 64 : 0;
-        g->fov = glfwGetKey(g->window, CRAFT_KEY_ZOOM) ? 15 : 65;
+        g->fov = glfwGetKey(g->window, CRAFT_KEY_ZOOM) ? FOV_ZOOM : FOV;
         if (glfwGetKey(g->window, CRAFT_KEY_FORWARD)) sz--;
         if (glfwGetKey(g->window, CRAFT_KEY_BACKWARD)) sz++;
         if (glfwGetKey(g->window, CRAFT_KEY_LEFT)) sx--;

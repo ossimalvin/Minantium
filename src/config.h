@@ -14,6 +14,14 @@
 #define DAY_LENGTH 600
 #define INVERT_MOUSE 0
 
+// world generation
+#define WORLD_HEIGHT 1
+#define WORLD_HEIGHT_SCALE 1
+#define WORLD_HEIGHT_MAX 50
+#define WORLD_HEIGHT_MIN 12
+#define WORLD_SEA_LEVEL -1
+#define WORLD_ENABLE_BEDROCK 1
+
 // rendering options
 #define SHOW_LIGHTS 1
 #define SHOW_PLANTS 1
@@ -25,6 +33,8 @@
 #define SHOW_INFO_TEXT 1
 #define SHOW_CHAT_TEXT 1
 #define SHOW_PLAYER_NAMES 1
+#define FOV 70
+#define FOV_ZOOM FOV * .25
 
 // key bindings
 #define CRAFT_KEY_FORWARD 'W'

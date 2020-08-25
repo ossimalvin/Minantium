@@ -15,7 +15,7 @@
 #define COBBLE 11
 #define LIGHT_STONE 12
 #define DARK_STONE 13
-#define CHEST 14
+#define BEDROCK 14
 #define LEAVES 15
 #define CLOUD 16
 #define TALL_GRASS 17

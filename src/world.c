@@ -14,33 +14,44 @@ void create_world(int p, int q, world_func func, void *arg) {
             int z = q * CHUNK_SIZE + dz;
             float f = simplex2(x * 0.01, z * 0.01, 4, 0.5, 2);
             float g = simplex2(-x * 0.01, -z * 0.01, 2, 0.9, 2);
-            int mh = g * 32 + 16;
-            int h = f * mh;
+            int mh = (g * 46) * WORLD_HEIGHT_SCALE;
+            int h = f * mh + WORLD_HEIGHT;
             int w = 1;
             int v = 7;
-            int t = 12;
-            if (h <= t) {
-//                h = t;
+            //int t = 15;
+            if (h < WORLD_SEA_LEVEL) {
                 w = 2;
                 v = 2;
             }
+            if (h > WORLD_HEIGHT_MAX) {
+                h = WORLD_HEIGHT_MAX;
+            }
+            if (h < WORLD_HEIGHT_MIN) {
+                h = WORLD_HEIGHT_MIN;
+            }
+            // Water
+            for (int y = 0; y <= WORLD_SEA_LEVEL; y++) {
+                func(x, y+2, z, 57 * flag, arg);
+            }
             // sand and grass terrain
-            for (int y = 0; y < h; y++) {
-                func(x, 0, z, 14 * flag, arg); // Bedrock
+            for (int y = 1; y <= h; y++) {
+                if (WORLD_ENABLE_BEDROCK) {
+                    func(x, 0, z, 14 * flag, arg); // Bedrock
+                }
                 func(x, y, z, 6 * flag, arg); // Stone
                 func(x, y+2, z, v * flag, arg); // Dirt
-                func(x, y+3, z, w * flag, arg); // Grass!
+                func(x, y+3, z, w * flag, arg); // Grass
             }
             if (w == 1) {
                 if (SHOW_PLANTS) {
                     // grass
                     if (simplex2(-x * 0.1, z * 0.1, 4, 0.8, 2) > 0.6) {
-                        func(x, h+3, z, 17 * flag, arg);
+                        func(x, h+4, z, 17 * flag, arg);
                     }
                     // flowers
                     if (simplex2(x * 0.05, -z * 0.05, 4, 0.8, 2) > 0.7) {
                         int w = 18 + simplex2(x * 0.1, z * 0.1, 4, 0.8, 2) * 7;
-                        func(x, h+3, z, w * flag, arg);
+                        func(x, h+4, z, w * flag, arg);
                     }
                 }
                 // trees
@@ -51,19 +62,19 @@ void create_world(int p, int q, world_func func, void *arg) {
                     ok = 0;
                 }
                 if (ok && simplex2(x, z, 6, 0.5, 2) > 0.84) {
-                    for (int y = h + 3; y < h + 8; y++) {
+                    for (int y = h + 4; y < h + 8; y++) {
                         for (int ox = -3; ox <= 3; ox++) {
                             for (int oz = -3; oz <= 3; oz++) {
                                 int d = (ox * ox) + (oz * oz) +
                                     (y - (h + 4)) * (y - (h + 4));
                                 if (d < 11) {
-                                    func(x + ox, y+3, z + oz, 15, arg);
+                                    func(x + ox, y+4, z + oz, 15, arg);
                                 }
                             }
                         }
                     }
                     for (int y = h; y < h + 7; y++) {
-                        func(x, y+3, z, 5, arg);
+                        func(x, y+4, z, 5, arg);
                     }
                 }
             }
