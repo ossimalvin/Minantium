@@ -23,6 +23,9 @@ void create_world(int p, int q, world_func func, void *arg) {
                 w = 2;
                 v = 2;
             }
+            if (h >= WORLD_SNOW_LEVEL) {
+                w = 9;
+            }
             if (h > WORLD_HEIGHT_MAX) {
                 h = WORLD_HEIGHT_MAX;
             }

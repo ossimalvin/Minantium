@@ -978,6 +978,7 @@ void compute_chunk(WorkerItem *item) {
     }
 
     // populate opaque array
+    // TODO: Cull transparent faces from blocks of the same class. This will make glass look better, improve performance, fix issues with clouds intersecting with other blocks, and enable transparent water.
     for (int a = 0; a < 3; a++) {
         for (int b = 0; b < 3; b++) {
             Map *map = item->block_maps[a][b];
@@ -2158,6 +2159,15 @@ void on_right_click() {
         if (!player_intersects_block(2, s->x, s->y, s->z, hx, hy, hz)) {
             set_block(hx, hy, hz, items[g->item_index]);
             record_block(hx, hy, hz, items[g->item_index]);
+            return;
+        }
+    }
+    hw = hit_test(0, s->x, s->y, s->z, s->rx, s->ry, &hx, &hy, &hz);
+    if (hy > 0 && hy < 256 && is_displaceable(hw)) {
+        if (!player_intersects_block(2, s->x, s->y, s->z, hx, hy, hz)) {
+            set_block(hx, hy, hz, items[g->item_index]);
+            record_block(hx, hy, hz, items[g->item_index]);
+            return;
         }
     }
 }
@@ -2770,7 +2780,7 @@ int main(int argc, char **argv) {
         if (!loaded) {
             s->y = highest_block(s->x, s->z) + 2;
         }
-
+        
         // BEGIN MAIN LOOP //
         double previous = glfwGetTime();
         while (1) {

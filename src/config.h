@@ -16,10 +16,11 @@
 
 // world generation
 #define WORLD_HEIGHT 1
-#define WORLD_HEIGHT_SCALE 1
-#define WORLD_HEIGHT_MAX 50
-#define WORLD_HEIGHT_MIN 12
+#define WORLD_HEIGHT_SCALE 2
+#define WORLD_HEIGHT_MAX 100
+#define WORLD_HEIGHT_MIN -1
 #define WORLD_SEA_LEVEL -1
+#define WORLD_SNOW_LEVEL 30
 #define WORLD_ENABLE_BEDROCK 1
 
 // rendering options

@@ -1,4 +1,4 @@
-project( 'minantium','c' )
+project( 'minantium', 'c' )
 cc = meson.get_compiler( 'c' )
 
 # Depends

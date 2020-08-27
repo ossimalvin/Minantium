@@ -4,10 +4,10 @@
 #define EMPTY 0
 #define GRASS 1
 #define SAND 2
-#define STONE 3
+#define STONE_BRICK 3
 #define BRICK 4
 #define WOOD 5
-#define CEMENT 6
+#define STONE 6
 #define DIRT 7
 #define PLANK 8
 #define SNOW 9
@@ -25,6 +25,9 @@
 #define SUN_FLOWER 21
 #define WHITE_FLOWER 22
 #define BLUE_FLOWER 23
+#define WOOD_FIR 24
+#define LEAVES_FIR 25
+#define PLANK_FIR 26
 #define COLOR_00 32
 #define COLOR_01 33
 #define COLOR_02 34

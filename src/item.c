@@ -5,10 +5,10 @@ const int items[] = {
     // items the user can build
     GRASS,
     SAND,
-    STONE,
+    STONE_BRICK,
     BRICK,
     WOOD,
-    CEMENT,
+    STONE,
     DIRT,
     PLANK,
     SNOW,
@@ -16,7 +16,6 @@ const int items[] = {
     COBBLE,
     LIGHT_STONE,
     DARK_STONE,
-    BEDROCK,
     LEAVES,
     TALL_GRASS,
     YELLOW_FLOWER,
@@ -25,6 +24,9 @@ const int items[] = {
     SUN_FLOWER,
     WHITE_FLOWER,
     BLUE_FLOWER,
+    WOOD_FIR,
+    LEAVES_FIR,
+    PLANK_FIR,
     COLOR_00,
     COLOR_01,
     COLOR_02,
@@ -68,17 +70,17 @@ const int blocks[256][6] = {
     {1, 1, 1, 1, 1, 1}, // 2 - sand
     {2, 2, 2, 2, 2, 2}, // 3 - stone
     {3, 3, 3, 3, 3, 3}, // 4 - brick
-    {20, 20, 36, 4, 20, 20}, // 5 - wood
+    {17, 17, 33, 33, 17, 17}, // 5 - wood
     {5, 5, 5, 5, 5, 5}, // 6 - cement
     {0, 0, 0, 0, 0, 0}, // 7 - dirt
-    {7, 7, 7, 7, 7, 7}, // 8 - plank
+    {18, 18, 18, 18, 18, 18}, // 8 - plank
     {24, 24, 40, 0, 24, 24}, // 9 - snow
     {9, 9, 9, 9, 9, 9}, // 10 - glass
     {10, 10, 10, 10, 10, 10}, // 11 - cobble
     {11, 11, 11, 11, 11, 11}, // 12 - light stone
     {12, 12, 12, 12, 12, 12}, // 13 - dark stone
     {6, 6, 6, 6, 6, 6}, // 14 - bedrock
-    {14, 14, 14, 14, 14, 14}, // 15 - leaves
+    {34, 34, 34, 34, 34, 34}, // 15 - leaves
     {15, 15, 15, 15, 15, 15}, // 16 - cloud
     {0, 0, 0, 0, 0, 0}, // 17
     {0, 0, 0, 0, 0, 0}, // 18
@@ -87,9 +89,9 @@ const int blocks[256][6] = {
     {0, 0, 0, 0, 0, 0}, // 21
     {0, 0, 0, 0, 0, 0}, // 22
     {0, 0, 0, 0, 0, 0}, // 23
-    {0, 0, 0, 0, 0, 0}, // 24
-    {0, 0, 0, 0, 0, 0}, // 25
-    {0, 0, 0, 0, 0, 0}, // 26
+    {25, 25, 41, 41, 25, 25}, // 24 fir wood
+    {42, 42, 42, 42, 42, 42}, // 25 fir leaves
+    {26, 26, 26, 26, 26, 26}, // 26 fir plank
     {0, 0, 0, 0, 0, 0}, // 27
     {0, 0, 0, 0, 0, 0}, // 28
     {0, 0, 0, 0, 0, 0}, // 29
@@ -182,6 +184,7 @@ int is_transparent(int w) {
         case EMPTY:
         case GLASS:
         case LEAVES:
+        case LEAVES_FIR:
             return 1;
         default:
             return 0;
@@ -197,3 +200,16 @@ int is_destructable(int w) {
             return 1;
     }
 }
+
+int is_displaceable(int w) {
+    if (is_plant(w)) {
+        return 1;
+    }
+    switch (w) {
+        case CLOUD:
+            return 1;
+        default:
+            return 0;
+    }
+}
+    
