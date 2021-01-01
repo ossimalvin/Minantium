@@ -34,7 +34,7 @@
 #define SHOW_INFO_TEXT 1
 #define SHOW_CHAT_TEXT 1
 #define SHOW_PLAYER_NAMES 1
-#define FOV 70
+#define FOV 90
 #define FOV_ZOOM FOV * .25
 
 // key bindings

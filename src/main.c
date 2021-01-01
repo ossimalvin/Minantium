@@ -1574,6 +1574,9 @@ void set_block(int x, int y, int z, int w) {
         }
     }
     client_block(x, y, z, w);
+	if (get_radiosity(w)) {
+		set_light(p, q, x, y, z, get_radiosity(w));
+	}
 }
 
 void record_block(int x, int y, int z, int w) {

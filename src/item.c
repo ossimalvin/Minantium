@@ -16,6 +16,7 @@ const int items[] = {
     COBBLE,
     LIGHT_STONE,
     DARK_STONE,
+	TORCH,
     LEAVES,
     TALL_GRASS,
     YELLOW_FLOWER,
@@ -141,10 +142,13 @@ const int plants[256] = {
     52, // 21 - sun flower
     53, // 22 - white flower
     54, // 23 - blue flower
+	0, 0, 0, // 24-26
+	56, // 27 - torch
 };
 
 int is_plant(int w) {
     switch (w) {
+		case TORCH:
         case TALL_GRASS:
         case YELLOW_FLOWER:
         case RED_FLOWER:
@@ -156,6 +160,15 @@ int is_plant(int w) {
         default:
             return 0;
     }
+}
+
+int get_radiosity(int w) {
+	switch (w) {
+		case TORCH:
+			return 8;
+		default:
+			return 0;
+	}
 }
 
 int is_obstacle(int w) {
