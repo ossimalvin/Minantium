@@ -12,6 +12,7 @@ const int items[] = {
     DIRT,
     PLANK,
     SNOW,
+	SNOW_BLOCK,
     GLASS,
     COBBLE,
     LIGHT_STONE,
@@ -94,7 +95,7 @@ const int blocks[256][6] = {
     {42, 42, 42, 42, 42, 42}, // 25 fir leaves
     {26, 26, 26, 26, 26, 26}, // 26 fir plank
     {0, 0, 0, 0, 0, 0}, // 27
-    {0, 0, 0, 0, 0, 0}, // 28
+    {40, 40, 40, 40, 40, 40}, // 28 snow block
     {0, 0, 0, 0, 0, 0}, // 29
     {0, 0, 0, 0, 0, 0}, // 30
     {0, 0, 0, 0, 0, 0}, // 31

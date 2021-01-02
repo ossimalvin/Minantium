@@ -81,6 +81,12 @@ void create_world(int p, int q, world_func func, void *arg) {
                     }
                 }
             }
+			// snow
+			if (w == 9) {
+				if (simplex2(-x * 0.1, z * 0.1, 4, 0.8, 2) > 0.6) {
+					func(x, h+4, z, 28 * flag, arg);
+				}
+			}
             // clouds
             if (SHOW_CLOUDS) {
                 for (int y = 64; y < 72; y++) {

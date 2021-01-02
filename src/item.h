@@ -29,6 +29,7 @@
 #define LEAVES_FIR 25
 #define PLANK_FIR 26
 #define TORCH 27
+#define SNOW_BLOCK 28
 #define COLOR_00 32
 #define COLOR_01 33
 #define COLOR_02 34
